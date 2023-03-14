@@ -34,6 +34,7 @@ import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import SocialDistanceIcon from '@mui/icons-material/SocialDistance';
+
 // first do
 
 const INSUREE_MAIN_MENU_CONTRIBUTION_KEY_HEALTH_INSUREE = "insuree.mainMenuHealthinsuree";
@@ -104,6 +105,9 @@ class InsureeMainMenu extends Component {
         route: "/insuree/insurees",
       });
     }
+
+ 
+
     if (rights.includes(RIGHT_INSUREE)) {
       Health_insuree.push({
         text: formatMessage(this.props.intl, "insuree", "menu.MedicalItemSetup"),

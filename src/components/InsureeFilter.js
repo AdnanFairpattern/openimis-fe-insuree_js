@@ -4,6 +4,7 @@ import { withTheme, withStyles } from "@material-ui/core/styles";
 import { injectIntl } from "react-intl";
 import {Helmet} from "react-helmet";
 import { Checkbox, FormControlLabel, Grid, Slider } from "@material-ui/core";
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import {
   withModulesManager,
   formatMessage,
@@ -70,24 +71,15 @@ class InsureeFilter extends Component {
     const { intl, classes, filters, onChangeFilters } = this.props;
     return (
       <>
-     
+      <div className="Breadcrumbs">
+
+        <a style={{'color':'#000'}}><a href="/front/home">Home</a> <i class="fa fa-angle-double-right" aria-hidden="true"></i> Create Insurance <i class="fa fa-angle-double-right" aria-hidden="true"></i> Search</a>
+      
+        </div>
+    
  
       <Grid container className={classes.form}>
-        {/* <ControlledField
-          module="insuree"
-          id="InsureeFilter.location"
-          field={
-            <Grid item xs={12} >
-              <PublishedComponent
-                pubRef="location.DetailedLocationFilter"
-                withNull={true}
-                filters={filters}
-                onChangeFilters={onChangeFilters}
-                anchor="parentLocation"
-              />
-            </Grid>
-          }
-        /> */}
+
         <ControlledField
           module="insuree"
           id="InsureeFilter.chfId"
