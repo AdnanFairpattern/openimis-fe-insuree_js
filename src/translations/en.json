@@ -1,10 +1,12 @@
 {
   "insuree.appBar.enquiry": "Insuree enquiry…",
+  "insuree.mainMenuInsureeManagement": "Insuree Management ",
+
   "insuree.mainMenuHealthinsuree": "Health Insurance ",
-  "insuree.mainMenuLifeinsuree": "life Insurance ",
+  "insuree.mainMenuLifeinsuree": "Life Insurance ",
 
 
-  "insuree.mainMenuGroup": "Group Insurance",
+
   "insuree.mainClaimModule": "Claim Module",
   "insuree.mainUnderwritingModule": "Underwriting Module",
   "insuree.mainAgentsModule": "Agents Module",
@@ -27,7 +29,7 @@
 
 
 
-  "insuree.menu.insureeAdd": "Create New Insurance",
+  "insuree.menu.insureeAdd": "Add New Insuree",
   "insuree.menu.MedicalItemSetup": "Medical Item Setup",
   "insuree.menu.MedicalItemPriceSetup": "Medical Item Price Setup",
   "insuree.menu.MedicalServicesSetup": "Medical Services Setup",

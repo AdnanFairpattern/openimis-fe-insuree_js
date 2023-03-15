@@ -34,7 +34,7 @@ import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import SocialDistanceIcon from '@mui/icons-material/SocialDistance';
-
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 // first do
 
 const INSUREE_MAIN_MENU_CONTRIBUTION_KEY_HEALTH_INSUREE = "insuree.mainMenuHealthinsuree";
@@ -45,6 +45,7 @@ const INSUREE_MAIN_MENU_CONTRIBUTION_KEY_UNDERWRITING = "insuree.mainUnderwritin
 const INSUREE_MAIN_MENU_CONTRIBUTION_KEY_AGENT = "insuree.mainAgentsModule";
 const INSUREE_MAIN_MENU_CONTRIBUTION_KEY_INSUREEPOLICY = "insuree.mainInsurancePolicies";
 
+const INSUREE_MAIN_MENU_CONTRIBUTION_KEY_INSUREE_MANAGEMENT = "insuree.mainMenuInsureeManagement";
 
 
 const INSUREE_MAIN_MENU_CONTRIBUTION_KEY = "insuree.MainMenu";
@@ -65,22 +66,9 @@ class InsureeMainMenu extends Component {
     let underwriting_module=[]
     let agentmodule=[]
     let policymodule=[]
+    let INSUREE_MANAGEMENT=[]
+ 
 
-    if (rights.includes(RIGHT_FAMILY_ADD)) {
-      group_insuree.push({
-        text: formatMessage(this.props.intl, "insuree", "menu.addFamilyOrGroup"),
-        icon: <GroupAdd />,
-        route: "/" + modulesManager.getRef("insuree.route.family"),
-        withDivider: true,
-      });
-    }
-    if (rights.includes(RIGHT_FAMILY)) {
-      group_insuree.push({
-        text: formatMessage(this.props.intl, "insuree", "menu.familiesOrGroups"),
-        icon: <FindInPage />,
-        route: "/" + modulesManager.getRef("insuree.route.families"),
-      });
-    }
 
 
     if (rights.includes(RIGHT_INSUREE)) {
@@ -98,13 +86,7 @@ class InsureeMainMenu extends Component {
 
  
 
-    if (rights.includes(RIGHT_INSUREE)) {
-      Health_insuree.push({
-        text: formatMessage(this.props.intl, "insuree", "menu.insureeAdd"),
-        icon: <AddModeratorIcon />,
-        route: "/insuree/insurees",
-      });
-    }
+  
 
  
 
@@ -349,10 +331,32 @@ if (rights.includes(RIGHT_INSUREE)) {
 
 
 
+// insuree management
+if (rights.includes(RIGHT_INSUREE)) {
+  INSUREE_MANAGEMENT.push({
+    text: formatMessage(this.props.intl, "insuree", "menu.insureeAdd"),
+    icon: <AddModeratorIcon
+     />,
+    route: "/insuree/insurees",
+  });
+}
 
+if (rights.includes(RIGHT_INSUREE)) {
+  INSUREE_MANAGEMENT.push({
+    text: formatMessage(this.props.intl, "insuree", "menu.addFamilyOrGroup"),
+    icon: <GroupAdd
+     />,
+    route: "/insuree/family",
+  });
+}
 
-
-
+if (rights.includes(RIGHT_FAMILY)) {
+  INSUREE_MANAGEMENT.push({
+    text: formatMessage(this.props.intl, "insuree", "menu.familiesOrGroups"),
+    icon: <FindInPage />,
+    route: "/" + modulesManager.getRef("insuree.route.families"),
+  });
+}
 
 // 4th do
       // HEALTH INSUREE key
@@ -420,8 +424,12 @@ agentmodule.push(
         .getContribs(INSUREE_MAIN_MENU_CONTRIBUTION_KEY_INSUREEPOLICY)
         .filter((c) => !c.filter || c.filter(rights)),
     );
-
-
+    INSUREE_MANAGEMENT.push(
+      ...this.props.modulesManager
+        .getContribs(INSUREE_MAIN_MENU_CONTRIBUTION_KEY_INSUREE_MANAGEMENT)
+        .filter((c) => !c.filter || c.filter(rights)),
+    );
+    
 
 
     
@@ -429,6 +437,24 @@ agentmodule.push(
     if (!entries.length) return null;
     return (
       <>
+
+
+<MainMenuContribution
+        {...this.props}
+        header={formatMessage(this.props.intl, "insuree", "mainMenuInsureeManagement")}
+        icon={<PersonAddAltIcon />}
+        entries={INSUREE_MANAGEMENT}
+      />
+
+{/* insuree policy */}
+
+<MainMenuContribution
+        {...this.props}
+        header={formatMessage(this.props.intl, "insuree", "mainInsurancePolicies")}
+        icon={<AssignmentInd />}
+        entries={policymodule}
+      />
+      
  {/* HEALTH INSUREE ROUTE  */}
  <div className="insuree_icon">
  <MainMenuContribution 
@@ -456,13 +482,7 @@ agentmodule.push(
 {/* End life insuree */}
 
 
-      <MainMenuContribution
-        {...this.props}
-        header={formatMessage(this.props.intl, "insuree", "mainMenuGroup")}
-        icon={<People />}
-        entries={group_insuree}
-      />
-
+   
 
 
 
@@ -499,14 +519,7 @@ agentmodule.push(
       /> */}
   
 
-{/* insuree policy */}
 
-<MainMenuContribution
-        {...this.props}
-        header={formatMessage(this.props.intl, "insuree", "mainInsurancePolicies")}
-        icon={<AssignmentInd />}
-        entries={policymodule}
-      />
 
 
   
